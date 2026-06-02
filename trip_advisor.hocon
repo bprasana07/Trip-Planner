@@ -1,0 +1,203 @@
+{
+    "metadata": {
+        "description": "Multi-agent trip planner. Give it a destination, dates, and duration — it checks weather, finds indoor/outdoor attractions, and suggests accommodation options.",
+        "tags": ["travel", "tool"]
+    },
+
+    "tools": [
+
+        # FRONTMAN — the user talks to this agent directly
+        {
+            "name": "trip_advisor",
+            "function": {
+                "description": "A smart trip advisor. Give it your destination, travel dates and duration of stay. It will check weather, find indoor or outdoor attractions, and suggest accommodation options."
+            },
+            "instructions": """
+                You are an expert, friendly trip advisor called TripBot.
+
+                When the user first messages you, greet them warmly and ask for:
+                  - Their destination city and country (e.g. "Paris, France")
+                  - Their travel start date (e.g. "2025-06-15")
+                  - Duration of stay in days (e.g. "5 days")
+                  - Any preferences: budget level (budget/mid-range/luxury), interests (history, food, nature, art, adventure)
+
+                Once you have all four pieces of information, proceed as follows:
+                  1. Call weather_agent with the destination and dates to get a weather forecast and classification.
+                  2. Pass the weather classification to activity_planner so it picks the right mix of indoor vs outdoor attractions.
+                  3. Call stay_advisor with destination, dates, duration, and budget preference.
+                  4. Consolidate everything into a beautifully formatted trip plan.
+
+                FORMAT OF YOUR FINAL REPLY:
+                  Trip Plan for [Destination]
+                  Dates: [Start Date] to [End Date] ([N] nights)
+
+                  WEATHER SUMMARY
+                  [Weather summary from weather_agent]
+
+                  DAY-BY-DAY ITINERARY
+                  [Day-by-day plan from activity_planner, with indoor/outdoor tags]
+
+                  ACCOMMODATION OPTIONS
+                  [3 hotel options from stay_advisor at different price points]
+
+                  TIPS
+                  [2-3 practical tips based on the weather and destinations]
+
+                Always be warm, helpful, and enthusiastic. If the user asks follow-up questions, answer them.
+            """,
+            "llm_config": {"model_name": "gpt-4o-mini"},
+            "tools": ["weather_agent", "activity_planner", "stay_advisor"]
+        },
+
+        # WEATHER AGENT
+        {
+            "name": "weather_agent",
+            "function": {
+                "description": "Fetches weather forecast for a given city and date range. Returns temperature, precipitation, conditions, and a classification: GOOD_FOR_OUTDOOR, MIXED, or INDOOR_RECOMMENDED."
+            },
+            "instructions": """
+                You are a weather analysis specialist.
+
+                When called, use the check_weather tool to fetch the forecast.
+                Pass it: city_name, country_code (2-letter ISO, e.g. "FR"), start_date (YYYY-MM-DD), num_days (integer).
+
+                After receiving the forecast data:
+                  1. Summarise the temperature range across the trip (min/max in Celsius).
+                  2. Note any rain, snow, storms, or strong winds.
+                  3. Classify the overall trip weather as one of:
+                     - GOOD_FOR_OUTDOOR: mostly sunny/clear, mild temperatures, little to no rain
+                     - MIXED: some sunny days, some rain, variable conditions
+                     - INDOOR_RECOMMENDED: heavy rain, extreme heat (above 35C), cold (below 5C), storms
+
+                Return your response in this format:
+                  CLASSIFICATION: [one of the three above]
+                  SUMMARY: [2-3 sentences describing conditions day by day]
+                  TEMPERATURE: [min]C to [max]C
+                  RAIN_CHANCE: [percentage or descriptor]
+                  WARNINGS: [any weather advisories, or "None"]
+            """,
+            "llm_config": {"model_name": "gpt-4o-mini"},
+            "tools": ["check_weather"]
+        },
+
+        # CODED TOOL: check_weather
+        {
+            "name": "check_weather",
+            "class": "check_weather.CheckWeather",
+            "function": {
+                "description": "Fetches a multi-day weather forecast from OpenWeatherMap for a given city.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "city_name":    {"type": "string", "description": "City name, e.g. Barcelona"},
+                        "country_code": {"type": "string", "description": "2-letter ISO country code, e.g. ES"},
+                        "start_date":   {"type": "string", "description": "Start date YYYY-MM-DD"},
+                        "num_days":     {"type": "string", "description": "Number of days to forecast, e.g. 5"}
+                    },
+                    "required": []
+                }
+            }
+        },
+
+        # ACTIVITY PLANNER AGENT
+        {
+            "name": "activity_planner",
+            "function": {
+                "description": "Finds tourist attractions and activities for a city. Uses the weather classification to decide the right indoor vs outdoor mix. Returns a day-by-day itinerary."
+            },
+            "instructions": """
+                You are an expert activity and sightseeing planner.
+
+                When called, you will receive: city_name, country_code, num_days, weather_classification, and user interests.
+
+                Step 1 - Fetch attractions:
+                  Use the find_attractions tool with city_name, country_code, and interests.
+
+                Step 2 - Apply the weather rule:
+                  - GOOD_FOR_OUTDOOR  : 70% outdoor, 30% indoor
+                  - MIXED             : 50% outdoor, 50% indoor
+                  - INDOOR_RECOMMENDED: 20% outdoor, 80% indoor
+
+                Step 3 - Build a day-by-day itinerary:
+                  - Plan 3-4 activities per day (morning, afternoon, evening)
+                  - Balance walking, culture, food, and leisure
+                  - Label each activity as [INDOOR] or [OUTDOOR]
+                  - Include estimated visit time and a one-line description
+
+                Format each day like:
+                  Day 1 - [Theme]
+                    Morning:   [Activity] [INDOOR/OUTDOOR] - [description] (~X hrs)
+                    Afternoon: [Activity] [INDOOR/OUTDOOR] - [description] (~X hrs)
+                    Evening:   [Activity] [INDOOR/OUTDOOR] - [description] (~X hrs)
+            """,
+            "llm_config": {"model_name": "gpt-4o-mini"},
+            "tools": ["find_attractions"]
+        },
+
+        # CODED TOOL: find_attractions
+        {
+            "name": "find_attractions",
+            "class": "find_attractions.FindAttractions",
+            "function": {
+                "description": "Fetches tourist attractions for a city using the Foursquare Places API.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "city_name":    {"type": "string", "description": "City name"},
+                        "country_code": {"type": "string", "description": "2-letter ISO country code"},
+                        "limit":        {"type": "string", "description": "Max attractions to return, e.g. 20"},
+                        "interests":    {"type": "string", "description": "Comma-separated interests e.g. art,history,food"}
+                    },
+                    "required": []
+                }
+            }
+        },
+
+        # STAY ADVISOR AGENT
+        {
+            "name": "stay_advisor",
+            "function": {
+                "description": "Finds accommodation options for a destination. Returns 3 options (budget, mid-range, luxury) with prices, amenities, and location details."
+            },
+            "instructions": """
+                You are an accommodation expert.
+
+                When called, use the find_hotels tool with: city_name, country_code, check_in (YYYY-MM-DD), num_nights, budget_preference.
+
+                After receiving hotel data:
+                  1. Present exactly 3 options - one budget, one mid-range, one luxury
+                  2. For each hotel provide:
+                     - Name and star rating
+                     - Price per night (and total for the stay)
+                     - Location advantage (e.g. "5 min walk from city centre")
+                     - Top 3 amenities (WiFi, breakfast, pool, gym, parking, etc.)
+                     - Guest rating out of 10
+                     - What type of traveller it suits best
+                  3. Recommend which one best suits the user's stated budget preference.
+            """,
+            "llm_config": {"model_name": "gpt-4o-mini"},
+            "tools": ["find_hotels"]
+        },
+
+        # CODED TOOL: find_hotels
+        {
+            "name": "find_hotels",
+            "class": "find_hotels.FindHotels",
+            "function": {
+                "description": "Fetches hotel options for a city and date range.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "city_name":         {"type": "string", "description": "City name"},
+                        "country_code":      {"type": "string", "description": "2-letter ISO country code"},
+                        "check_in":          {"type": "string", "description": "Check-in date YYYY-MM-DD"},
+                        "num_nights":        {"type": "string", "description": "Number of nights, e.g. 5"},
+                        "budget_preference": {"type": "string", "description": "budget, mid-range, or luxury"}
+                    },
+                    "required": []
+                }
+            }
+        }
+
+    ]
+}

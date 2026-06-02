@@ -1,0 +1,2 @@
+[console_scripts]
+nsflow = nsflow.run:main

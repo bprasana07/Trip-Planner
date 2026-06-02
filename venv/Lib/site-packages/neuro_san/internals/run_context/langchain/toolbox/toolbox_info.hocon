@@ -1,0 +1,226 @@
+
+# Copyright © 2023-2026 Cognizant Technology Solutions Corp, www.cognizant.com.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# END COPYRIGHT
+
+# The schema specifications for this file are documented here:
+# https://github.com/cognizant-ai-lab/neuro-san/blob/main/docs/toolbox_info_hocon_reference.md
+
+{
+    # ------------------------------------------------------------------------------------------
+    # Overview:
+    # - This file defines configurations for langchain's tools and toolkits as well as shared coded tools.
+    # - More details about LangChain tools and toolkits can be found at:
+    #   https://python.langchain.com/docs/integrations/tools/
+    # - See https://github.com/cognizant-ai-lab/neuro-san/blob/main/docs/agent_hocon_reference.md for more informations on coded tools.
+    #
+    # Customization via Agent HOCON File:
+    # - In the agent HOCON file, users can define an "args" section to **add or override** 
+    #   arguments from this tool configuration file dynamically at runtime.
+    # ------------------------------------------------------------------------------------------
+
+    # --------------------------- Langchain's Tools and Toolkits -------------------------------
+    # Requirements:
+    # - Each tool or toolkit must have a "class" key.
+    # - The specified class must be available in the server's PYTHONPATH.
+    # - Additional dependencies (outside of langchain_community) must be installed separately.
+
+    # NOTE on Request tools and toolkit: 
+    # There are inherent risks in giving models discretion to execute real-world actions.
+    # Users must "opt-in" to these risks by setting allow_dangerous_request=True to use these tools.
+
+    # ---------------- Requests Toolkit (Batch of Tools) ----------------
+
+    # This defines a requests toolkit that provides multiple HTTP request utilities.
+    # It initializes RequestsToolkit with:
+    # - requests_wrapper: An instance of TextRequestsWrapper (used to manage headers)
+    # - allow_dangerous_requests: Enables execution of potentially unsafe requests
+    # The `.get_tools()` method is called, meaning this toolkit returns multiple tools.
+    # RequestsToolkit(requests_wrapper=TextRequestsWrapper(headers={}), allow_dangerous_requests=True).get_tools()
+
+    "requests_toolkit": {
+        # This is the class of the tool to use
+        "class": "langchain_community.agent_toolkits.openapi.toolkit.RequestsToolkit",
+
+        # This is where more info on the tool can be found.
+        "base_tool_info_url": "https://python.langchain.com/docs/integrations/tools/requests/",
+
+        # Arguments for the tool's constructor.
+        # These arguments will be used when instantiating the tool unless overridden in the agent HOCON file.
+        "args": {
+            "allow_dangerous_requests": true,
+            "requests_wrapper": {
+                "class": "langchain_community.utilities.requests.TextRequestsWrapper",
+                "args": {
+                    "headers": {}
+                }
+            }
+        }
+    },
+
+    # ---------------- Individual HTTP Request Tools ----------------
+    
+    # GET request tool
+    # This sets up a tool that can send HTTP GET requests.
+    # It initializes RequestsGetTool with:
+    # - requests_wrapper: Manages request headers
+    # - allow_dangerous_requests: Enables potentially unsafe requests
+    # RequestsGetTool(requests_wrapper=TextRequestsWrapper(headers={}), allow_dangerous_requests=True)
+
+    "requests_get": {
+        # This is the class of the tool to use
+        "class": "langchain_community.tools.requests.tool.RequestsGetTool",
+
+        # This is where more info on the tool can be found.
+        "base_tool_info_url": "https://python.langchain.com/docs/integrations/tools/requests/",
+
+        # Arguments for the tool's constructor.
+        # These arguments will be used when instantiating the tool unless overridden in the agent HOCON file.
+        "args": {
+            "allow_dangerous_requests": true,
+            "requests_wrapper": {
+                "class": "langchain_community.utilities.requests.TextRequestsWrapper",
+                "args": {
+                    "headers": {}
+                }
+            }
+        }
+    },
+
+    # POST request tool
+    # This configures an HTTP POST request tool.
+    # It is similar to the GET tool but allows sending data in the request body.
+    # RequestsPostTool(requests_wrapper=TextRequestsWrapper(headers={}), allow_dangerous_requests=True)
+
+    "requests_post": {
+        # This is the class of the tool to use
+        "class": "langchain_community.tools.requests.tool.RequestsPostTool",
+
+        # This is where more info on the tool can be found.
+        "base_tool_info_url": "https://python.langchain.com/docs/integrations/tools/requests/",
+
+        # Arguments for the tool's constructor.
+        # These arguments will be used when instantiating the tool unless overridden in the agent HOCON file.
+        "args": {
+            "allow_dangerous_requests": true,
+            "requests_wrapper": {
+                "class": "langchain_community.utilities.requests.TextRequestsWrapper",
+                "args": {
+                    "headers": {}
+                }
+            }
+        }
+    },
+
+    # PATCH request tool
+    # This allows sending PATCH requests, typically used to update resources.
+    # RequestsPatchTool(requests_wrapper=TextRequestsWrapper(headers={}), allow_dangerous_requests=True)
+
+    "requests_patch": {
+        # This is the class of the tool to use
+        "class": "langchain_community.tools.requests.tool.RequestsPatchTool",
+
+        # This is where more info on the tool can be found.
+        "base_tool_info_url": "https://python.langchain.com/docs/integrations/tools/requests/",
+
+        # Arguments for the tool's constructor.
+        # These arguments will be used when instantiating the tool unless overridden in the agent HOCON file.
+        "args": {
+            "allow_dangerous_requests": true,
+            "requests_wrapper": {
+                "class": "langchain_community.utilities.requests.TextRequestsWrapper",
+                "args": {
+                    "headers": {}
+                }
+            }
+        }
+    },
+
+    # PUT request tool
+    # This allows sending PUT requests, which are used to replace resources.
+    # RequestsPutTool(requests_wrapper=TextRequestsWrapper(headers={}), allow_dangerous_requests=True)
+
+    "requests_put": {
+        # This is the class of the tool to use
+        "class": "langchain_community.tools.requests.tool.RequestsPutTool",
+
+        # This is where more info on the tool can be found.
+        "base_tool_info_url": "https://python.langchain.com/docs/integrations/tools/requests/",
+
+        # Arguments for the tool's constructor.
+        # These arguments will be used when instantiating the tool unless overridden in the agent HOCON file.
+        "args": {
+            "allow_dangerous_requests": true,
+            "requests_wrapper": {
+                "class": "langchain_community.utilities.requests.TextRequestsWrapper",
+                "args": {
+                    "headers": {}
+                }
+            }
+        }
+    },
+
+    # DELETE request tool
+    # This enables HTTP DELETE requests to remove resources.
+    # RequestsDeleteTool(requests_wrapper=TextRequestsWrapper(headers={}), allow_dangerous_requests=True)
+
+    "requests_delete": {
+        # This is the class of the tool to use
+        "class": "langchain_community.tools.requests.tool.RequestsDeleteTool",
+
+        # This is where more info on the tool can be found.
+        "base_tool_info_url": "https://python.langchain.com/docs/integrations/tools/requests/",
+
+        # Arguments for the tool's constructor.
+        # These arguments will be used when instantiating the tool unless overridden in the agent HOCON file.
+        "args": {
+            "allow_dangerous_requests": true,
+            "requests_wrapper": {
+                "class": "langchain_community.utilities.requests.TextRequestsWrapper",
+                "args": {
+                    "headers": {}
+                }
+            }
+        }
+    },
+
+    # --------------------------------- Shared CodedTool ------------------------------------
+    # Keys:
+    # - "class" specifies the tool's implementation as module.ClassName where module is in AGENT_TOOL_PATH or neuro_san/coded_tools.
+    # - "description" let the agent know what the tool does.
+    # - "parameters" are arguments' definitions and types.
+    # Note: Parameters are optional and may be omitted if not required.
+    # See "parameters" section in https://github.com/cognizant-ai-lab/neuro-san/blob/main/docs/agent_hocon_reference.md
+
+    "get_current_date_time": {
+        "class": "get_current_date_time.GetCurrentDateTime",
+        "description": "Get the current date and time for a specified timezone. utc_offset has precedence over iana_timezone.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "utc_offset": {
+                    "type": "int",
+                    "description": "The UTC offset in hours (e.g., -5 for EST, 1 for CET). Must be between -24 and 24. Has precedence over iana_timezone."
+                },
+                "iana_timezone": {
+                    "type": "string",
+                    "description": "The IANA timezone string (e.g., 'America/New_York', 'Europe/Berlin')."
+                }
+            },
+            "required": []
+        }
+    }
+
+}

@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create *)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(xargs grep -l \"agent\\\\|chat\\\\|8080\")",
+      "Bash(xargs grep -l \"8080\\\\|api\\\\|fetch\\\\|axios\")",
+      "Bash(curl -s http://localhost:8080/api/v1/trip_advisor/function)",
+      "Bash(curl -s http://localhost:8080)",
+      "Bash(curl -s -X POST http://localhost:8080/api/v1/trip_advisor/streaming_chat -H \"Content-Type: application/json\" -d '{\"user_input\": \"hello\"}')",
+      "Bash(curl -v -X POST http://localhost:8080/api/v1/trip_advisor/streaming_chat -H \"Content-Type: application/json\" -d '{\"user_input\": \"hello\"}')",
+      "Bash(curl -s http://localhost:8080/api/v1/list)",
+      "Bash(curl -s http://localhost:8080/list)",
+      "Bash(curl -s \"http://localhost:8080/api/v1/aaosa/function\")",
+      "Bash(xargs -I{} grep -A 6 '\"class\"' {})",
+      "Bash(python -c \"import sys,json; agents=[a['agent_name'] for a in json.load\\(sys.stdin\\)['agents']]; print\\('trip_advisor found!' if 'trip_advisor' in agents else 'NOT found'\\); [print\\(' -', a\\) for a in agents if 'trip' in a.lower\\(\\)]\")",
+      "Bash(python -c ' *)",
+      "Bash(xargs -I{} ls {}/entry_points.txt)",
+      "Bash(xargs cat)"
+    ]
+  }
+}

@@ -1,0 +1,242 @@
+
+// Copyright © 2023-2026 Cognizant Technology Solutions Corp, www.cognizant.com.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// END COPYRIGHT
+
+// To obtain information concerning the code generation that is used by this Interface Definition Language
+// please see the following:
+//
+// Go - https://developers.google.com/protocol-buffers/docs/reference/go-generated
+// Python - https://developers.google.com/protocol-buffers/docs/reference/python-generated
+//
+syntax = "proto3";
+
+package dev.cognizant_ai.neuro_san.api.grpc.agent;
+
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+
+import "neuro_san/api/grpc/chat.proto";
+
+option go_package = "github.com/cognizant-ai-lab/neuro_san/internal/gen/dev.cognizant_ai/neuro_san/api/grpc/agent/v1;agent";
+
+
+// The service comprises all the exchanges to the backend in support of a single agent's
+// services.  Routing is done by way of agent name on the grpc service hosting the agent,
+// so as to keep info about which agents are hosted private (grpc gives the hand when a
+// particular agent is unknown.
+service AgentService {
+
+    // Called when a client needs the function description of an agent.
+    rpc Function (FunctionRequest) returns (FunctionResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/{agent_name}/function"
+        };
+    }
+
+    // Most important semantics of the streaming:
+    //  1) The "answer" to a query of any agent network is in the *last* streamed
+    //     AGENT_FRAMEWORK message.
+    //  2) To RESTfully continue your conversation with the agent network:
+    //     The very last AGENT_FRAMEWORK message before the stream closes will
+    //     have its chat_context field filled in with a structure. You can
+    //     copy this whole-cloth to the chat_context of your next StreamingChat
+    //     request to continue the conversation.
+    //  3) It is important to note that since this is a streaming API, for HTTP clients:
+    //      a) Any single response will always be on the same line. That is,
+    //         responses will not be broken up across multiple lines in an
+    //         HTTP response.
+    //      b) We cannot yet guarantee that there will be only one streamed response
+    //         per HTTP response line. That is, it is possible for more than one
+    //         response *might* come on a single line if they come quickly enough,
+    //         though this is not the empirically observed norm.
+    rpc StreamingChat(ChatRequest) returns (stream ChatResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/{agent_name}/streaming_chat"
+            body: "*"
+        };
+    }
+
+    // Called when a client needs the internal connectivity description of an agent.
+    rpc Connectivity(ConnectivityRequest) returns (ConnectivityResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/{agent_name}/connectivity"
+        };
+    }
+}
+
+// Request structure for Function gRPC method
+message FunctionRequest {
+}
+
+// Description of an agent's function
+message Function {
+
+    // Outward-facing description of what the agent does.
+    string description = 1 [json_name="description"];
+
+    // Optional map of parameters passed in via the natural-language chat text channel
+    // that the agent needs in order to work.
+    // This is really a pydantic/OpenAI function description, which is
+    // a bit too complex to specify directly in protobuf.
+    google.protobuf.Struct parameters = 2 [json_name="parameters"];
+
+    // This is a description of what data is expected to come *in* via the sly_data channel.
+    // Optional map of parameters passed in via the sly_data dictionary private data channel
+    // that the agent needs in order to work.  Just like the parameters above,
+    // this is really a pydantic/OpenAI function description, which is
+    // a bit too complex to specify directly in protobuf.
+    google.protobuf.Struct sly_data_schema = 3 [json_name="sly_data_schema"];
+
+    // This is a description of what data is expected to come *out* via the sly_data channel.
+    // Optional map of parameters returned via the sly_data dictionary private data channel
+    // that the agent will return after its work.  Just like the parameters above,
+    // this is really a pydantic/OpenAI function description, which is
+    // a bit too complex to specify directly in protobuf.
+    google.protobuf.Struct sly_data_output_schema = 4 [json_name="sly_data_output_schema"];
+}
+
+// Response structure for Function gRPC method
+message FunctionResponse {
+
+    // The functional description of the agent.
+    // Any initial chat prompt is obtained from the Function's description.
+    Function function = 1 [json_name="function"];
+}
+
+// Type of filtering for StreamingChat
+enum ChatFilterType {
+    UNKNOWN = 0;    // Unknown value. Default behavior is MINIMAL
+    MINIMAL = 1;    // Stream the bare minimum messages to provide an answer and chat_context
+    MAXIMAL = 2;    // Stream everything possible for maximum debugging information.
+}
+
+// Allows for controlling the messages that get streamed via StreamingChat.
+message ChatFilter {
+
+    // For now allow for an enum to describe how we want chat messages streamed.
+    // In the future the description of this server-side filter might offer more
+    // fine-grained control (hence an encapsulating structure).
+    ChatFilterType chat_filter_type = 1 [json_name="chat_filter_type"];
+}
+
+// Request structure for Chat gRPC method
+message ChatRequest {
+    // This is an entirely optional map whose keys refer to data that is better
+    // left out of the LLM chat stream.  The keys themselves might appear in the
+    // chat stream, referring to the data, but the data itself does not.
+    // The intent is for the key references to be passed to tools,
+    // which then grab the values by programmatic means.
+    google.protobuf.Struct sly_data = 3 [json_name="sly_data"];
+
+    // To send basic user input, simply add a user_message to your request
+    // and fill in its "text" field.
+    chat.ChatMessage user_message = 4 [json_name="user_message"];
+
+    // Message for holding the state of play for any chat session
+    // such that should the client send this back to the service,
+    // a different server knows exactly where to pick up where the previous
+    // conversation left off. There are 2 uses:
+    //  1)  When this is not present in the request, a completely new conversation
+    //      is initiated.
+    //  2)  To RESTfully continue an existing conversation: The last AGENT_FRAMEWORK
+    //      message that was streamed from your previous StreamingChat() call
+    //      will have its chat_context field filled in its ChatMessage.
+    //      Simply take the value there and put it here for your next request
+    //      to continue the conversation (your new user_input adding to the exchange).
+    //      No client-side parsing of the ChatContext is explicitly required.
+    chat.ChatContext chat_context = 5 [json_name="chat_context"];
+
+    // A structure defining a server-side filter on what kind of messages come
+    // over the stream. When not present, defaults to MINIMAL chat filter.
+    ChatFilter chat_filter = 6 [json_name="chat_filter"];
+}
+
+// Response structure for Chat gRPC method
+message ChatResponse {
+
+    // The request that generated this response
+    ChatRequest request = 1;
+
+    // Optionally returned.
+    // Idea is that all of the above come back immediately to establish
+    // the connection, but likely the field below would not initially be filled in.
+    // Later on, as messages return from agents, later streamed versions of this
+    // message would have response below filled in with single messages from
+    // specific agents any time any one of them has something new to say.
+    // The origin info on the ChatMessage would allow the client to place
+    // just where in the agent hierarchy the message comes from.
+    // (Think like a URI:
+    //  opportunity_finder_pipeline/opportunity_finder_process_manager/synthetic_data_generator)
+    chat.ChatMessage response = 4 [json_name="response"];
+}
+
+// Request structure for Connectivity gRPC method
+message ConnectivityRequest {
+}
+
+message ConnectivityInfo {
+
+    // The agent network node whose connectivity is being described
+    string origin = 1 [json_name="origin"];
+
+    // A list of tool nodes that are possible to reach from the origin
+    //
+    // This might include references into external agent networks, perhaps hosted
+    // on other servers.  Separate calls to those guys will need to be made
+    // in order to gain information about their own connectivity, if this is
+    // actually desired by the client.
+    //
+    // Worth noting that server-side agent descriptions are allowed to
+    // withhold connectivity info they deem private, or too much of an
+    // implementation detail.  That is, connectivity reported is only
+    // as much as the server wants a client to know.
+    repeated string tools = 2 [json_name="tools"];
+
+    // A string describing the nature of the agent so that a client UI can
+    // add an indication of its differences between other nodes in the graph.
+    // Values from the neuro-san include:
+    //  * llm_agent  (default)
+    //  * coded_tool
+    //  * langchain_tool
+    //  * external_agent
+    // ... however individual agent networks can define their own strings on
+    // a per-node basis to customize their own visualizations.
+    string display_as = 3 [json_name="display_as"];
+
+    // Metadata for the node.
+    // This comes as a free-form dictionary which can have agent-network defined semantics.
+    // Some key/value pairs might eventually become standardized as part of the neuro-san API as
+    // time goes on, for instance for fine-grained Responsible AI (RAI) scores.
+    // As those keys become standardized, they will be added here in the docs.
+    google.protobuf.Struct metadata = 4 [json_name="metadata"];
+}
+
+
+// Response structure for Connectivity gRPC method
+message ConnectivityResponse {
+
+    // The description of the agent network's internal connectivity
+    // ... as far as the agent wants the outside world to know..
+    repeated ConnectivityInfo connectivity_info = 1 [json_name="connectivity_info"];
+
+    // Metadata for the network as a whole.
+    // This comes as a free-form dictionary which can have agent-network defined semantics.
+    // Some key/value pairs might eventually become standardized as part of the neuro-san API as
+    // time goes on, for instance for network-level Responsible AI (RAI) scores.
+    // As those keys become standardized, they will be added here in the docs.
+    google.protobuf.Struct metadata = 2 [json_name="metadata"];
+}
+

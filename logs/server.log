@@ -1,0 +1,210 @@
+Starting NeuroSan...
+[NeuroSan] {"message": "Using Authorizer: neuro_san.internals.authorization.null.always_yes_authorizer.AlwaysYesAuthorizer", "user_id": "None", "Timestamp": "2026-06-02T14:15:01.095915", "source": "HttpServer", "message_type": "Other", "request_id": "None"}
+[NeuroSan] >>>>>>>>>>>> Enabling MCP service...
+[NeuroSan] {"message": "Added agent trip_advisor to allowed http service list", "user_id": "None", "Timestamp": "2026-06-02T14:15:01.097367", "source": "HttpServer", "message_type": "Other", "request_id": "None"}
+[NeuroSan] {"message": "ADDED network for agent trip_advisor : 2370163641040", "user_id": "None", "Timestamp": "2026-06-02T14:15:01.097474", "source": "HttpServer", "message_type": "Other", "request_id": "None"}
+[NeuroSan] {"message": "HTTP server is running 1 instances on port 8080 with backlog 128", "user_id": "None", "Timestamp": "2026-06-02T14:15:01.116894", "source": "HttpServer", "message_type": "Other", "request_id": "None"}
+[NeuroSan] {"message": "HTTP server idle connections timeout: 3600 seconds", "user_id": "None", "Timestamp": "2026-06-02T14:15:01.117082", "source": "HttpServer", "message_type": "Other", "request_id": "None"}
+[NeuroSan] {"message": "HTTP server is shutting down after 903087 requests", "user_id": "None", "Timestamp": "2026-06-02T14:15:01.117406", "source": "HttpServer", "message_type": "Other", "request_id": "None"}
+[NeuroSan] {"message": "MCP server is running protocol 2025-06-18", "user_id": "None", "Timestamp": "2026-06-02T14:15:01.117494", "source": "HttpServer", "message_type": "Other", "request_id": "None"}
+[NeuroSan] {"message": "Starting StorageWatcher with 5 seconds period", "user_id": "None", "Timestamp": "2026-06-02T14:15:01.117572", "source": "HttpServer", "message_type": "Other", "request_id": "None"}
+[NeuroSan] {"message": "Starting RegistryStorageUpdater for ['C:\\Users\\Prasana\\LEARNI~1\\AI\\TRIPPL~1\\manifest.hocon'] with 5 seconds period", "user_id": "None", "Timestamp": "2026-06-02T14:15:01.117646", "source": "HttpServer", "message_type": "Other", "request_id": "None"}
+[NeuroSan] {"message": "Registry polling watchdog started on: C:\Users\Prasana\LEARNI~1\AI\TRIPPL~1 for manifest ['C:\\Users\\Prasana\\LEARNI~1\\AI\\TRIPPL~1\\manifest.hocon'] with polling every 1 sec", "user_id": "None", "Timestamp": "2026-06-02T14:15:02.270729", "source": "HttpServer", "message_type": "Other", "request_id": "None"}
+[NeuroSan] {"message": "Starting TempNetworkStorageUpdater", "user_id": "None", "Timestamp": "2026-06-02T14:15:02.271161", "source": "HttpServer", "message_type": "Other", "request_id": "None"}
+[NeuroSan] {"message": "Waiting for new queues to be added for processing", "user_id": "None", "Timestamp": "2026-06-02T14:15:02.272114", "source": "HttpServer", "message_type": "Other", "request_id": "None"}
+[NeuroSan] {"message": "Starting EventWorkMonitor with 0.500000 seconds period", "user_id": "None", "Timestamp": "2026-06-02T14:15:02.272262", "source": "HttpServer", "message_type": "Other", "request_id": "None"}
+[NeuroSan] {"message": "Starting PeriodicEventInitiator with 1.000000 seconds period", "user_id": "None", "Timestamp": "2026-06-02T14:15:02.272758", "source": "HttpServer", "message_type": "Other", "request_id": "None"}
+[NeuroSan] {"message": "Found 0 periodic agent interactions", "user_id": "None", "Timestamp": "2026-06-02T14:15:02.273534", "source": "HttpServer", "message_type": "Other", "request_id": "None"}
+[NeuroSan] {"message": "200 GET / (::1) 7.25ms", "user_id": "None", "Timestamp": "2026-06-02T14:15:45.945072", "source": "HttpServer", "message_type": "Other", "request_id": "None"}
+[NeuroSan] {"message": "404 GET /favicon.ico (::1) 0.73ms", "user_id": "None", "Timestamp": "2026-06-02T14:15:47.043461", "source": "HttpServer", "message_type": "Error", "request_id": "None"}
+[NeuroSan] {"message": "Observed events: modified 2, added 0, deleted 0", "user_id": "None", "Timestamp": "2026-06-02T14:16:37.281263", "source": "HttpServer", "message_type": "Other", "request_id": "None"}
+[NeuroSan] {"message": "Updating manifest file: ['C:\\Users\\Prasana\\LEARNI~1\\AI\\TRIPPL~1\\manifest.hocon']", "user_id": "None", "Timestamp": "2026-06-02T14:16:37.281919", "source": "HttpServer", "message_type": "Other", "request_id": "None"}
+[NeuroSan] {"message": "Validating agent network keywords...", "user_id": "None", "Timestamp": "2026-06-02T14:16:37.414901", "source": "HttpServer", "message_type": "Other", "request_id": "None"}
+[NeuroSan] {"message": "Validating agent network structure...", "user_id": "None", "Timestamp": "2026-06-02T14:16:37.415157", "source": "HttpServer", "message_type": "Other", "request_id": "None"}
+[NeuroSan] {"message": "Validating URLs for MCP tools and subnetwork...", "user_id": "None", "Timestamp": "2026-06-02T14:16:37.415320", "source": "HttpServer", "message_type": "Other", "request_id": "None"}
+[NeuroSan] {"message": "Reset service for modified agent trip_advisor", "user_id": "None", "Timestamp": "2026-06-02T14:16:37.415546", "source": "HttpServer", "message_type": "Other", "request_id": "None"}
+[NeuroSan] {"message": "REPLACED network for agent trip_advisor : 2370053955152", "user_id": "None", "Timestamp": "2026-06-02T14:16:37.415651", "source": "HttpServer", "message_type": "Other", "request_id": "None"}
+[NeuroSan] {"message": "Start trip_advisor/streaming_chat", "user_id": "None", "Timestamp": "2026-06-02T14:16:57.425302", "source": "HttpServer", "message_type": "Other", "request_id": "request-1"}
+[NeuroSan] {"message": "Received a trip_advisor.StreamingChat request for 'Plan a trip to Barcelona, Spain. Dates: 20th July 2025. Duration: 5 days. Mid-range budget, love art and food.'", "user_id": "None", "Timestamp": "2026-06-02T14:16:57.426385", "source": "HttpServer", "message_type": "Other", "request_id": "request-1"}
+[NeuroSan] {"message": "Agent network 'trip_advisor' (ID: 2370053955152) used for operation: streaming_chat", "user_id": "None", "Timestamp": "2026-06-02T14:16:57.430684", "source": "HttpServer", "message_type": "Other", "request_id": "None"}
+[NeuroSan] {"message": "retrying from PermissionDeniedError", "user_id": "None", "Timestamp": "2026-06-02T14:17:05.018278", "source": "HttpServer", "message_type": "Warning", "request_id": "request-1"}
+[NeuroSan] {"message": "retrying from PermissionDeniedError", "user_id": "None", "Timestamp": "2026-06-02T14:17:05.461318", "source": "HttpServer", "message_type": "Warning", "request_id": "request-1"}
+[NeuroSan] {"message": "retrying from PermissionDeniedError", "user_id": "None", "Timestamp": "2026-06-02T14:17:05.931253", "source": "HttpServer", "message_type": "Warning", "request_id": "request-1"}
+[NeuroSan] {"message": "Request reporting: {
+[NeuroSan]     "token_accounting": {
+[NeuroSan]         "time_taken_in_seconds": 2.642820119857788,
+[NeuroSan]         "caveats": [
+[NeuroSan]             "External agent token usage is not included.",
+[NeuroSan]             "Token counts are approximate and estimated using tiktoken.",
+[NeuroSan]             "time_taken_in_seconds includes overhead from Langchain and Neuro SAN"
+[NeuroSan]         ],
+[NeuroSan]         "models": {
+[NeuroSan]             "openai": {}
+[NeuroSan]         }
+[NeuroSan]     }
+[NeuroSan] }", "user_id": "None", "Timestamp": "2026-06-02T14:17:05.934607", "source": "HttpServer", "message_type": "Other", "request_id": "request-1"}
+[NeuroSan] {"message": "Done with trip_advisor.StreamingChat request for 'Plan a trip to Barcelona, Spain. Dates: 20th July 2025. Duration: 5 days. Mid-range budget, love art and food.'", "user_id": "None", "Timestamp": "2026-06-02T14:17:05.934749", "source": "HttpServer", "message_type": "Other", "request_id": "request-1"}
+[NeuroSan] {"message": "200 POST /api/v1/trip_advisor/streaming_chat (::1) 9747.72ms", "user_id": "None", "Timestamp": "2026-06-02T14:17:05.935097", "source": "HttpServer", "message_type": "Other", "request_id": "request-1"}
+[NeuroSan] {"message": "Finish trip_advisor/streaming_chat", "user_id": "None", "Timestamp": "2026-06-02T14:17:05.935197", "source": "HttpServer", "message_type": "Other", "request_id": "request-1"}
+[NeuroSan] {"message": "Stats: {'NumProcessing': 0, 'Total': 1, 'trip_advisor/streaming_chat': 1}", "user_id": "None", "Timestamp": "2026-06-02T14:17:05.935271", "source": "HttpServer", "message_type": "Other", "request_id": "request-1"}
+[NeuroSan] --- Logging error ---
+[NeuroSan] Traceback (most recent call last):
+[NeuroSan]   File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3568.0_x64__qbz5n2kfra8p0\Lib\logging\__init__.py", line 1154, in emit
+[NeuroSan]     stream.write(msg + self.terminator)
+[NeuroSan]     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+[NeuroSan]   File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3568.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
+[NeuroSan]     return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+[NeuroSan]            ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[NeuroSan] UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f514' in position 13: character maps to <undefined>
+[NeuroSan] Call stack:
+[NeuroSan]   File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3568.0_x64__qbz5n2kfra8p0\Lib\threading.py", line 1015, in _bootstrap
+[NeuroSan]     self._bootstrap_inner()
+[NeuroSan]   File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3568.0_x64__qbz5n2kfra8p0\Lib\threading.py", line 1044, in _bootstrap_inner
+[NeuroSan]     self.run()
+[NeuroSan]   File "C:\Users\Prasana\Learnings\AI\Trip Planner\venv\Lib\site-packages\watchdog\observers\api.py", line 213, in run
+[NeuroSan]     self.dispatch_events(self.event_queue)
+[NeuroSan]   File "C:\Users\Prasana\Learnings\AI\Trip Planner\venv\Lib\site-packages\watchdog\observers\api.py", line 391, in dispatch_events
+[NeuroSan]     handler.dispatch(event)
+[NeuroSan]   File "C:\Users\Prasana\Learnings\AI\Trip Planner\venv\Lib\site-packages\watchdog\events.py", line 217, in dispatch
+[NeuroSan]     getattr(self, f"on_{event.event_type}")(event)
+[NeuroSan]   File "C:\Users\Prasana\Learnings\AI\Trip Planner\venv\Lib\site-packages\neuro_san\service\watcher\registries\registry_change_handler.py", line 51, in on_modified
+[NeuroSan]     self.handle_event(RegistryChangeHandler.MODIFIED, event.src_path)
+[NeuroSan]   File "C:\Users\Prasana\Learnings\AI\Trip Planner\venv\Lib\site-packages\neuro_san\service\watcher\registries\registry_change_handler.py", line 73, in handle_event
+[NeuroSan]     self.logger.info("\U0001f514 File %s: %s", event_name, src_path)
+[NeuroSan] Message: '\U0001f514 File %s: %s'
+[NeuroSan] Arguments: ('modified', 'C:\\Users\\Prasana\\LEARNI~1\\AI\\TRIPPL~1\\frontend\\node_modules\\.package-lock.json')
+[NeuroSan] --- Logging error ---
+[NeuroSan] Traceback (most recent call last):
+[NeuroSan]   File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3568.0_x64__qbz5n2kfra8p0\Lib\logging\__init__.py", line 1154, in emit
+[NeuroSan]     stream.write(msg + self.terminator)
+[NeuroSan]     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+[NeuroSan]   File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3568.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
+[NeuroSan]     return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+[NeuroSan]            ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[NeuroSan] UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f514' in position 13: character maps to <undefined>
+[NeuroSan] Call stack:
+[NeuroSan]   File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3568.0_x64__qbz5n2kfra8p0\Lib\threading.py", line 1015, in _bootstrap
+[NeuroSan]     self._bootstrap_inner()
+[NeuroSan]   File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3568.0_x64__qbz5n2kfra8p0\Lib\threading.py", line 1044, in _bootstrap_inner
+[NeuroSan]     self.run()
+[NeuroSan]   File "C:\Users\Prasana\Learnings\AI\Trip Planner\venv\Lib\site-packages\watchdog\observers\api.py", line 213, in run
+[NeuroSan]     self.dispatch_events(self.event_queue)
+[NeuroSan]   File "C:\Users\Prasana\Learnings\AI\Trip Planner\venv\Lib\site-packages\watchdog\observers\api.py", line 391, in dispatch_events
+[NeuroSan]     handler.dispatch(event)
+[NeuroSan]   File "C:\Users\Prasana\Learnings\AI\Trip Planner\venv\Lib\site-packages\watchdog\events.py", line 217, in dispatch
+[NeuroSan]     getattr(self, f"on_{event.event_type}")(event)
+[NeuroSan]   File "C:\Users\Prasana\Learnings\AI\Trip Planner\venv\Lib\site-packages\neuro_san\service\watcher\registries\registry_change_handler.py", line 51, in on_modified
+[NeuroSan]     self.handle_event(RegistryChangeHandler.MODIFIED, event.src_path)
+[NeuroSan]   File "C:\Users\Prasana\Learnings\AI\Trip Planner\venv\Lib\site-packages\neuro_san\service\watcher\registries\registry_change_handler.py", line 73, in handle_event
+[NeuroSan]     self.logger.info("\U0001f514 File %s: %s", event_name, src_path)
+[NeuroSan] Message: '\U0001f514 File %s: %s'
+[NeuroSan] Arguments: ('modified', 'C:\\Users\\Prasana\\LEARNI~1\\AI\\TRIPPL~1\\frontend\\package-lock.json')
+[NeuroSan] --- Logging error ---
+[NeuroSan] Traceback (most recent call last):
+[NeuroSan]   File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3568.0_x64__qbz5n2kfra8p0\Lib\logging\__init__.py", line 1154, in emit
+[NeuroSan]     stream.write(msg + self.terminator)
+[NeuroSan]     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+[NeuroSan]   File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3568.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
+[NeuroSan]     return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+[NeuroSan]            ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[NeuroSan] UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f514' in position 13: character maps to <undefined>
+[NeuroSan] Call stack:
+[NeuroSan]   File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3568.0_x64__qbz5n2kfra8p0\Lib\threading.py", line 1015, in _bootstrap
+[NeuroSan]     self._bootstrap_inner()
+[NeuroSan]   File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3568.0_x64__qbz5n2kfra8p0\Lib\threading.py", line 1044, in _bootstrap_inner
+[NeuroSan]     self.run()
+[NeuroSan]   File "C:\Users\Prasana\Learnings\AI\Trip Planner\venv\Lib\site-packages\watchdog\observers\api.py", line 213, in run
+[NeuroSan]     self.dispatch_events(self.event_queue)
+[NeuroSan]   File "C:\Users\Prasana\Learnings\AI\Trip Planner\venv\Lib\site-packages\watchdog\observers\api.py", line 391, in dispatch_events
+[NeuroSan]     handler.dispatch(event)
+[NeuroSan]   File "C:\Users\Prasana\Learnings\AI\Trip Planner\venv\Lib\site-packages\watchdog\events.py", line 217, in dispatch
+[NeuroSan]     getattr(self, f"on_{event.event_type}")(event)
+[NeuroSan]   File "C:\Users\Prasana\Learnings\AI\Trip Planner\venv\Lib\site-packages\neuro_san\service\watcher\registries\registry_change_handler.py", line 63, in on_deleted
+[NeuroSan]     self.handle_event(RegistryChangeHandler.DELETED, event.src_path)
+[NeuroSan]   File "C:\Users\Prasana\Learnings\AI\Trip Planner\venv\Lib\site-packages\neuro_san\service\watcher\registries\registry_change_handler.py", line 73, in handle_event
+[NeuroSan]     self.logger.info("\U0001f514 File %s: %s", event_name, src_path)
+[NeuroSan] Message: '\U0001f514 File %s: %s'
+[NeuroSan] Arguments: ('deleted', 'C:\\Users\\Prasana\\LEARNI~1\\AI\\TRIPPL~1\\trip_advisor.hocon')
+[NeuroSan] --- Logging error ---
+[NeuroSan] Traceback (most recent call last):
+[NeuroSan]   File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3568.0_x64__qbz5n2kfra8p0\Lib\logging\__init__.py", line 1154, in emit
+[NeuroSan]     stream.write(msg + self.terminator)
+[NeuroSan]     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+[NeuroSan]   File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3568.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
+[NeuroSan]     return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+[NeuroSan]            ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[NeuroSan] UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f514' in position 13: character maps to <undefined>
+[NeuroSan] Call stack:
+[NeuroSan]   File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3568.0_x64__qbz5n2kfra8p0\Lib\threading.py", line 1015, in _bootstrap
+[NeuroSan] {"message": "Observed events: modified 0, added 1, deleted 1", "user_id": "None", "Timestamp": "2026-06-02T14:18:12.336999", "source": "Http Server", "message_type": "Other", "request_id": "request-1"}
+[NeuroSan] {"message": "Updating manifest file: ['C:\\Users\\Prasana\\LEARNI~1\\AI\\TRIPPL~1\\manifest.hocon']", "user_id": "None", "Timestamp": "2026-06-02T14:18:12.337262", "source": "Http Server", "message_type": "Other", "request_id": "request-1"}
+[NeuroSan] {"message": "Validating agent network keywords...", "user_id": "None", "Timestamp": "2026-06-02T14:18:12.484138", "source": "Http Server", "message_type": "Other", "request_id": "request-1"}
+[NeuroSan] {"message": "Validating agent network structure...", "user_id": "None", "Timestamp": "2026-06-02T14:18:12.484511", "source": "Http Server", "message_type": "Other", "request_id": "request-1"}
+[NeuroSan] {"message": "Validating URLs for MCP tools and subnetwork...", "user_id": "None", "Timestamp": "2026-06-02T14:18:12.484841", "source": "Http Server", "message_type": "Other", "request_id": "request-1"}
+[NeuroSan] {"message": "Reset service for modified agent trip_advisor", "user_id": "None", "Timestamp": "2026-06-02T14:18:12.485463", "source": "HttpServer", "message_type": "Other", "request_id": "None"}
+[NeuroSan] {"message": "REPLACED network for agent trip_advisor : 2370053887712", "user_id": "None", "Timestamp": "2026-06-02T14:18:12.485676", "source": "Http Server", "message_type": "Other", "request_id": "request-1"}
+[NeuroSan] {"message": "Start trip_advisor/streaming_chat", "user_id": "None", "Timestamp": "2026-06-02T14:19:31.824298", "source": "HttpServer", "message_type": "Other", "request_id": "request-2"}
+[NeuroSan] {"message": "Received a trip_advisor.StreamingChat request for '"Plan a trip to Barcelona, Spain. Dates: 20th July 2025. Duration: 5 days. Mid-range budget, love art and food.'", "user_id": "None", "Timestamp": "2026-06-02T14:19:31.825780", "source": "HttpServer", "message_type": "Other", "request_id": "request-2"}
+[NeuroSan] {"message": "Agent network 'trip_advisor' (ID: 2370053887712) used for operation: streaming_chat", "user_id": "None", "Timestamp": "2026-06-02T14:19:31.826998", "source": "HttpServer", "message_type": "Other", "request_id": "None"}
+[NeuroSan] {"message": "Request reporting: {
+[NeuroSan]     "token_accounting": {
+[NeuroSan]         "total_tokens": 2394,
+[NeuroSan]         "prompt_tokens": 2286,
+[NeuroSan]         "completion_tokens": 108,
+[NeuroSan]         "successful_requests": 1,
+[NeuroSan]         "total_cost": 0.0004077,
+[NeuroSan]         "time_taken_in_seconds": 2.145890951156616,
+[NeuroSan]         "caveats": [
+[NeuroSan]             "External agent token usage is not included.",
+[NeuroSan]             "Token counts are approximate and estimated using tiktoken.",
+[NeuroSan]             "time_taken_in_seconds includes overhead from Langchain and Neuro SAN"
+[NeuroSan]         ],
+[NeuroSan]         "models": {
+[NeuroSan]             "openai": {
+[NeuroSan]                 "gpt-4o-mini-2024-07-18": {
+[NeuroSan]                     "total_tokens": 2394,
+[NeuroSan]                     "prompt_tokens": 2286,
+[NeuroSan]                     "completion_tokens": 108,
+[NeuroSan]                     "successful_requests": 1,
+[NeuroSan]                     "total_cost": 0.0004077,
+[NeuroSan]                     "time_taken_in_seconds": 2.080291986465454
+[NeuroSan]                 }
+[NeuroSan]             }
+[NeuroSan]         }
+[NeuroSan]     }
+[NeuroSan] }", "user_id": "None", "Timestamp": "2026-06-02T14:19:34.550679", "source": "HttpServer", "message_type": "Other", "request_id": "request-2"}
+[NeuroSan] {"message": "Done with trip_advisor.StreamingChat request for '"Plan a trip to Barcelona, Spain. Dates: 20th July 2025. Duration: 5 days. Mid-range budget, love art and food.'", "user_id": "None", "Timestamp": "2026-06-02T14:19:34.554247", "source": "HttpServer", "message_type": "Other", "request_id": "request-2"}
+[NeuroSan] {"message": "200 POST /api/v1/trip_advisor/streaming_chat (::1) 3986.83ms", "user_id": "None", "Timestamp": "2026-06-02T14:19:34.554898", "source": "HttpServer", "message_type": "Other", "request_id": "request-2"}
+[NeuroSan] {"message": "Finish trip_advisor/streaming_chat", "user_id": "None", "Timestamp": "2026-06-02T14:19:34.555075", "source": "HttpServer", "message_type": "Other", "request_id": "request-2"}
+[NeuroSan] {"message": "Stats: {'NumProcessing': 0, 'Total': 2, 'trip_advisor/streaming_chat': 2}", "user_id": "None", "Timestamp": "2026-06-02T14:19:34.555398", "source": "HttpServer", "message_type": "Other", "request_id": "request-2"}
+[NeuroSan] {"message": "Start trip_advisor/streaming_chat", "user_id": "None", "Timestamp": "2026-06-02T14:19:52.112223", "source": "HttpServer", "message_type": "Other", "request_id": "request-3"}
+[NeuroSan] {"message": "Received a trip_advisor.StreamingChat request for 'Yes'", "user_id": "None", "Timestamp": "2026-06-02T14:19:52.113665", "source": "HttpServer", "message_type": "Other", "request_id": "request-3"}
+[NeuroSan] {"message": "Agent network 'trip_advisor' (ID: 2370053887712) used for operation: streaming_chat", "user_id": "None", "Timestamp": "2026-06-02T14:19:52.114794", "source": "HttpServer", "message_type": "Other", "request_id": "None"}
+[NeuroSan] {"message": "Calling class check_weather.CheckWeather", "user_id": "None", "Timestamp": "2026-06-02T14:19:58.504039", "source": "HttpServer", "message_type": "Other", "request_id": "request-3"}
+[NeuroSan] {"message": "
+[NeuroSan] Running CodedTool class CheckWeather.invoke() synchronously in an asynchronous environment.
+[NeuroSan] This can lead to performance problems when running within a server. Consider porting to the async_invoke() method.
+[NeuroSan] ", "user_id": "None", "Timestamp": "2026-06-02T14:19:58.531194", "source": "HttpServer", "message_type": "Other", "request_id": "request-3"}
+[NeuroSan] {"message": "Calling class find_hotels.FindHotels", "user_id": "None", "Timestamp": "2026-06-02T14:19:58.614229", "source": "HttpServer", "message_type": "Other", "request_id": "request-3"}
+[NeuroSan] {"message": "
+[NeuroSan] Running CodedTool class FindHotels.invoke() synchronously in an asynchronous environment.
+[NeuroSan] This can lead to performance problems when running within a server. Consider porting to the async_invoke() method.
+[NeuroSan] ", "user_id": "None", "Timestamp": "2026-06-02T14:19:58.632190", "source": "HttpServer", "message_type": "Other", "request_id": "request-3"}
+[NeuroSan] {"message": "Calling class find_attractions.FindAttractions", "user_id": "None", "Timestamp": "2026-06-02T14:20:04.661837", "source": "HttpServer", "message_type": "Other", "request_id": "request-3"}
+[NeuroSan] {"message": "
+[NeuroSan] Running CodedTool class FindAttractions.invoke() synchronously in an asynchronous environment.
+[NeuroSan] This can lead to performance problems when running within a server. Consider porting to the async_invoke() method.
+[NeuroSan] ", "user_id": "None", "Timestamp": "2026-06-02T14:20:04.688652", "source": "HttpServer", "message_type": "Other", "request_id": "request-3"}
+[NeuroSan] {"message": "Calling class find_attractions.FindAttractions", "user_id": "None", "Timestamp": "2026-06-02T14:20:21.934984", "source": "HttpServer", "message_type": "Other", "request_id": "request-3"}
+[NeuroSan] {"message": "
+[NeuroSan] Running CodedTool class FindAttractions.invoke() synchronously in an asynchronous environment.
+[NeuroSan] This can lead to performance problems when running within a server. Consider porting to the async_invoke() method.
+[NeuroSan] ", "user_id": "None", "Timestamp": "2026-06-02T14:20:21.935250", "source": "HttpServer", "message_type": "Other", "request_id": "request-3"}
+[NeuroSan] {"message": "Request reporting: {
+[NeuroSan]     "token_accounting": {
+[NeuroSan]         "total_tokens": 19044,
+[NeuroSan]         "prompt_tokens": 14894,
+[NeuroSan]         "completion_tokens": 4150,
+[NeuroSan]         "successful_requests": 16,
+[NeuroSan]         "total_cost": 0.0047241,
+[NeuroSan]         "time_taken_in_seconds": 71.51868486404419,

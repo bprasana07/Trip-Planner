@@ -1,0 +1,12 @@
+# Core framework
+neuro-san
+nsflow
+
+# HTTP calls made by the coded tools
+requests
+
+# .env file loading
+python-dotenv
+
+# ASGI server (used to run nsflow)
+uvicorn

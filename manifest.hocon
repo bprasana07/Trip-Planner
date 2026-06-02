@@ -1,0 +1,4 @@
+{
+    # Trip Advisor agent network
+    "trip_advisor.hocon": true
+}

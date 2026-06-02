@@ -1,0 +1,36 @@
+
+# Copyright © 2023-2026 Cognizant Technology Solutions Corp, www.cognizant.com.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# END COPYRIGHT
+
+from typing import Any
+
+from neuro_san.message_processing.basic_message_processor import BasicMessageProcessor
+
+
+class AgentEvaluator:
+    """
+    Interface definition for evaluating part of an agent's response
+    """
+
+    def evaluate(self, processor: BasicMessageProcessor, test_key: str, verify_for: Any):
+        """
+        Evaluate the contents of the BasicMessageProcessor
+
+        :param processor: The BasicMessageProcessor to evaluate
+        :param test_key: the compound .-delimited key of the response value to test
+        :param verify_for: The data to evaluate the response against
+        """
+        raise NotImplementedError
